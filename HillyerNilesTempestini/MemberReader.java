@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 import java.beans.*;
 
-
+@SuppressWarnings("unchecked")
 public class MemberReader implements Serializable{
 	
 	public static ArrayList<Member> readTextFile(String fname) throws FileNotFoundException
@@ -53,7 +53,6 @@ public class MemberReader implements Serializable{
 		
 		return mems;
 	}
-	 @SuppressWarnings("unchecked")
     public static ArrayList<Member> readBinaryFile(String fname) {
         try {
             ObjectInputStream ois = new ObjectInputStream(

@@ -15,7 +15,7 @@ public class Member implements Serializable{
 	private char diabeties;
 	private char alzheimers;
 	
-	Member()
+	public Member()
 	{
 		this.firstName = "";
 		this.lastName = "";
@@ -28,7 +28,7 @@ public class Member implements Serializable{
 		this.diabeties = ' ';
 		this.alzheimers = ' ';
 	}
-	Member(String fn, String ln, int ag, int wt, int ht, int bps, int bpd, char cnc, char dia, char alz)
+	public Member(String fn, String ln, int ag, int wt, int ht, int bps, int bpd, char cnc, char dia, char alz)
 	{
 		setFirstName(fn);
 		setLastName(ln);
