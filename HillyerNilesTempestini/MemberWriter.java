@@ -9,6 +9,7 @@ public class MemberWriter implements Serializable{
     public static void writeMembersToScreen(ArrayList<Member> members) {
         for (Member m : members) {
             System.out.println(m);
+            System.out.println("-----------------------------");
         }
     }
     public static boolean writeTextFile(ArrayList<Member> members, String filename) {
@@ -46,5 +47,6 @@ public class MemberWriter implements Serializable{
             return false;
         }
     }
+    
 }
 

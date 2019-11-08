@@ -64,7 +64,7 @@ public class MemberReader implements Serializable{
             return null;
         }
     }
-    @SuppressWarnings("unchecked")
+
     public static ArrayList<Member> readXmlFile(String fname) throws IllegalAccessException{
         try {
             XMLDecoder xml = new XMLDecoder(new BufferedInputStream(

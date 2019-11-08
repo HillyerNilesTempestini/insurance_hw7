@@ -51,23 +51,27 @@ public class Driver implements Serializable{
 		// TODO Auto-generated method stub
 		//C:\Users\Sam Tempestini\Desktop\memberData.txt
 		int choice = 0;
-		String ftype = null, outputFname = null,  inputFname = null;
+		String ftype, outputFname, inputFname, fileName, ft, extension;
 		ArrayList<Member> members = new ArrayList<Member>();
 		ArrayList<Member> txtMembers = new ArrayList<Member>();
 		ArrayList<Member> binMembers = new ArrayList<Member>();
 		ArrayList<Member> xmlMembers = new ArrayList<Member>();
 		
 		
+		
 		welcome();
 		
 		String fname;
 		Scanner fsc = new Scanner(System.in);
-		System.out.print("Enter name of file: "); 
-		fname = fsc.nextLine();
+		//System.out.print("Enter name of file: ");
+		//fname = fsc.nextLine();
+		fname = "C:\\Users\\Sam Tempestini\\Desktop\\memberData.txt";
+		System.out.println("The file path is: " + fname);
 		members = MemberReader.readTextFile(fname);
 	
 		
 		Scanner sc = new Scanner(System.in);
+		Scanner fs = new Scanner(System.in);
 		do {
 			showMenu();
 			try {
@@ -76,11 +80,7 @@ public class Driver implements Serializable{
 				
 				if (choice == 1)
 				{
-					for (Member m: members)
-					{
-						System.out.println(m.toString());
-						System.out.println("-----------------------------");
-					}
+					MemberWriter.writeMembersToScreen(members);
 				}
 				else if(choice == 2)
 				{
@@ -88,127 +88,92 @@ public class Driver implements Serializable{
 				}
 				else if(choice == 3) 
 				{
+					// write files
 					try {
-						do {
-							boolean test = false;
-							System.out.println("(T)ext, (B)inary, or (X)ML?");
-							Scanner it = new Scanner(System.in);
-							ftype = it.next().toUpperCase().trim();
-							System.out.println("Enter name of input file: ");
-							inputFname = it.next().trim();
-							String[] bits = inputFname.split(".");
-							if (ftype == "T")
-							{
-								assert bits[bits.length-1].toLowerCase().equals("txt"); 
-								test = MemberWriter.writeTextFile(members,inputFname);
-							}
-							else if (ftype == "B")
-							{
-								assert bits[bits.length-1].toLowerCase().equals("bin");
-								test = MemberWriter.writeBinaryFile(members,inputFname);
-							}
-							else if(ftype == "X")
-							{
-								assert bits[bits.length-1].toLowerCase().equals("xml");
-								test = MemberWriter.writeXmlFile(members,inputFname);
-							}
-							break;
-						}while(ftype != "T" || ftype != "B" || ftype != "X");
-							
-							System.out.println("Members were read successfully.");				
+						boolean outValid = false;
+						System.out.println("(T)ext, (B)inary, or (X)ML?");
+						ftype = fs.nextLine().toUpperCase().trim();
+						System.out.println("Enter name of output file: ");
+						outputFname = fs.nextLine().trim();
+						extension = outputFname.substring(outputFname.lastIndexOf(".")).toLowerCase();
+						
+						if (ftype.equals("T") && extension.equals(".txt"))
+						{			
+							if (MemberWriter.writeTextFile(members,outputFname)) {
+								System.out.println("Success, text file was written.");
+								outValid = true;
+							} 						
+						}
+						else if (ftype.equals("B") && extension.equals(".bin"))
+						{
+							if (MemberWriter.writeBinaryFile(members,outputFname)) {
+								System.out.println("Success, binary file was written.");
+								outValid = true;
+							} 							
+						}
+						else if(ftype.equals("X") && extension.equals(".xml"))
+						{
+							if (MemberWriter.writeXmlFile(members,outputFname)) {
+								System.out.println("Success, XML file was written.");
+								outValid = true;
+							} 
+						}
+						if (outValid == false) 
+							System.out.println("Members were NOT written successfully.");
+						
 					}
 					catch(Exception ex)
 					{
-						System.out.println("ERROR");
+						System.out.println("ERROR: Could NOT write file as specified.");
 					}
 					
 				}
 				else if(choice == 4) 
 				{
+					
+					// read files
 					try {
-						do {
-							System.out.println("(T)ext, (B)inary, or (X)ML?");
-							Scanner ot = new Scanner(System.in);
-							ftype = ot.next().toUpperCase().trim();
-							System.out.println("Enter name of output file: ");
-							outputFname = ot.next().trim();
-							String[] bits = outputFname.split(".");
-							if (ftype == "T")
-							{
-								assert bits[bits.length-1].toLowerCase().equals("txt"); 
-								members = MemberReader.readTextFile(outputFname);
-							}
-							else if (ftype == "B")
-							{
-								assert bits[bits.length-1].toLowerCase().equals("bin");
-								members = MemberReader.readBinaryFile(outputFname);
-							}
-							else if(ftype == "X")
-							{
-								assert bits[bits.length-1].toLowerCase().equals("xml");
-								members = MemberReader.readXmlFile(outputFname);
-							}
-							break;
-						}while(ftype != "T" || ftype != "B" || ftype != "X");
+						boolean inValid = false;
+						System.out.println("(T)ext, (B)inary, or (X)ML?");
+						ftype = fs.next().toUpperCase().trim();
+						System.out.println("Enter name of input file: ");
+						inputFname = fs.next().trim();
+		                extension = inputFname.substring(inputFname.lastIndexOf(".")).toLowerCase();
 						
-						System.out.println("Members were written successfully.");
+						// test if vaild file entry
+						if (ftype.equals("T") && extension.equals(".txt"))
+						{
+							inValid = true;
+						}
+						else if (ftype.equals("B") && extension.equals(".bin"))
+						{
+							members = MemberReader.readBinaryFile(inputFname);
+							inValid = true;
+						}
+						else if(ftype.equals("X") && extension.equals(".xml"))
+						{
+							members = MemberReader.readXmlFile(inputFname);
+							inValid = true;
+						}
 						
-						MemberWriter.writeMembersToScreen(members);
-					}
-					catch(Exception ex)
+						
+						if (inValid == true) {
+							System.out.println("Members were read successfully.");
+							MemberWriter.writeMembersToScreen(members);
+						}
+						else 
+						{
+							System.out.println("Members were NOT read successfully.");
+						}
+		
+					}catch(Exception ex)
 					{
-						System.out.println("ERROR");
+						System.out.println("ERROR: Could NOT read file as specifed");
 					}
 				}
 				else if(choice == 5) 
 				{
-					if (members == null)
-					{
-						System.out.println("A problem occurred. No members read.");
-					}
-					else
-					{
-						try {
-							String fileName;
-							Scanner fs = new Scanner(System.in);  
-							System.out.println("Here are the Members: ");
-				            MemberWriter.writeMembersToScreen(members);
-				            System.out.print("Enter name of binary file: ");
-				            fileName = fs.nextLine();
-				            if (MemberWriter.writeBinaryFile(members,fileName)) {
-				                System.out.println("Success.");
-				            } 
-				            else {
-				                System.out.println("Failure");
-				            }
-				            System.out.println("Going to read it back in ...");
-				            binMembers = MemberReader.readBinaryFile(fileName);
-				            if (binMembers == null) {
-				                System.out.println("Failure.");
-				            } 
-				            else {
-				                MemberWriter.writeMembersToScreen(binMembers);
-				            }
-				            System.out.print("Enter name of xml file: ");
-				            fileName = fs.nextLine();
-				            if (MemberWriter.writeXmlFile(members,fileName)) {
-				                System.out.println("Success!");
-				            } 
-				            else {
-				                System.out.println("Failure.");
-				            }
-				            xmlMembers = MemberReader.readXmlFile(fileName);
-				            if (xmlMembers == null) {
-				                System.out.println("Failure.");
-				            } 
-				            else {
-				                MemberWriter.writeMembersToScreen(xmlMembers);
-				            }
-						}catch(Exception ex)
-						{
-							System.out.println("ERROR");
-						}
-					}
+					
 				}
 				else if(choice == 6) 
 				{
