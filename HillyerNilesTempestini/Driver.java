@@ -2,6 +2,7 @@ package HillyerNilesTempestini;
 import java.util.*;
 import java.io.*;
 import java.beans.*;
+import org.json.simple.*;
 
 /**
  * 
@@ -56,8 +57,7 @@ public class Driver implements Serializable{
 		ArrayList<Member> txtMembers = new ArrayList<Member>();
 		ArrayList<Member> binMembers = new ArrayList<Member>();
 		ArrayList<Member> xmlMembers = new ArrayList<Member>();
-		
-		
+
 		
 		welcome();
 		
@@ -177,12 +177,24 @@ public class Driver implements Serializable{
 				}
 				else if(choice == 6) 
 				{
+					System.out.println("Enter name of JSON file: ");
+					fileName = fs.nextLine().trim();
+					extension = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
 					
-				}
-				else if(choice == 7) 
+					if (extension.equals(".json"))
+						MemberWriter.writeJSONFile(members,fileName);
+						System.out.println("Members were written to JSON file successfully.");
+				}	
+				else if(choice == 8) 
 				{
+					System.out.println("Enter name of JSON file: ");
+					fileName = fs.nextLine().trim();
+					extension = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
 					
-				}				
+					if (extension.equals(".json"))
+						MemberWriter.writeJSONFile(members,fileName);
+						System.out.println("Members were written to JSON file successfully.");
+				}
 			}catch(Exception ex)
 			{
 				System.out.println("You have chosen poorly...Exiting Program");
