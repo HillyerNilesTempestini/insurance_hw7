@@ -3,6 +3,7 @@ package HillyerNilesTempestini;
 import java.io.*;
 
 @SuppressWarnings("serial")
+//changed cancer,diabetes, and alzheimers to String from Char...
 public class Member implements Serializable{
 	private String firstName;
 	private String lastName;
@@ -11,9 +12,9 @@ public class Member implements Serializable{
 	private int weight;
 	private int bpSyst;
 	private int bpDias;	
-	private char cancer; 
-	private char diabeties;
-	private char alzheimers;
+	private String cancer; 
+	private String diabeties;
+	private String alzheimers;
 	
 	public Member()
 	{
@@ -24,11 +25,12 @@ public class Member implements Serializable{
 		this.height = 0;
 		this.bpSyst = 0;
 		this.bpDias = 0; 
-		this.cancer = ' ';
-		this.diabeties = ' ';
-		this.alzheimers = ' ';
+		this.cancer = "";
+		this.diabeties = "";
+		this.alzheimers = "";
 	}
-	public Member(String fn, String ln, int ag, int wt, int ht, int bps, int bpd, char cnc, char dia, char alz)
+	//Changed cnc, dia,and alz to String from char...
+	public Member(String fn, String ln, int ag, int wt, int ht, int bps, int bpd, String cnc, String dia, String alz)
 	{
 		setFirstName(fn);
 		setLastName(ln);
@@ -84,22 +86,22 @@ public class Member implements Serializable{
 	public void setBpDias(int bpDias) {
 		this.bpDias = bpDias;
 	}
-	public char getCancer() {
+	public String getCancer() {
 		return cancer;
 	}
-	public void setCancer(char cancer) {
+	public void setCancer(String cancer) {
 		this.cancer = cancer;
 	}
-	public char getDiabeties() {
+	public String getDiabeties() {
 		return diabeties;
 	}
-	public void setDiabeties(char diabeties) {
+	public void setDiabeties(String diabeties) {
 		this.diabeties = diabeties;
 	}
-	public char getAlzheimers() {
+	public String getAlzheimers() {
 		return alzheimers;
 	}
-	public void setAlzheimers(char alzheimers) {
+	public void setAlzheimers(String alzheimers) {
 		this.alzheimers = alzheimers;
 	}
 	
