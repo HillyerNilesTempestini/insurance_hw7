@@ -33,4 +33,11 @@ public class InsuranceScoreWriter {
     	            return false;
     	        }
     	    }
+    
+    	public static void PrintScoreCard(ArrayList<InsuranceScore> IS) {
+        for (InsuranceScore temp : IS) {
+            System.out.println(temp);
+        }
+	
+	}
 }

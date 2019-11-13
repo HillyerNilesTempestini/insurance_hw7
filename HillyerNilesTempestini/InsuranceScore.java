@@ -43,7 +43,10 @@ public class InsuranceScore {
 	
 	@Override
 	public String toString() {
-		return String.format("%s %s %s", getName(), getScore(), getRiskLevel());
+		return String.format("Here are the insurance assessments: \t\n"
+				 +"Name:%30s\n"
+				 +"Score:%28s\n" 
+				 +"Risk Level:%23s\n", getName(), getScore(), getRiskLevel());
 	}
 	
 	public static void PrintScoreCard(ArrayList<InsuranceScore> IS) {
