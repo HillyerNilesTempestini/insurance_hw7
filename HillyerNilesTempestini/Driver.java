@@ -53,6 +53,8 @@ public class Driver implements Serializable{
 		//C:\Users\Sam Tempestini\Desktop\memberData.txt
 		int choice = 0;
 		String ftype, outputFname, inputFname, fileName, ft, extension;
+		String firstname, lastname, cancer, diabetes, alzheimers;
+		int age, weight, height, bps, bpd;
 		ArrayList<Member> members = new ArrayList<Member>();
 		ArrayList<Member> txtMembers = new ArrayList<Member>();
 		ArrayList<Member> binMembers = new ArrayList<Member>();
@@ -84,7 +86,31 @@ public class Driver implements Serializable{
 				}
 				else if(choice == 2)
 				{
-					
+					//Needed to change Member.java in order to take in String instead of Char
+					//for taking user input. -Chelsea
+					System.out.print("Enter Member's First Name: ");
+					firstname = sc.next();
+					System.out.print("Enter Member's Last Name: ");
+					lastname = sc.next();
+					System.out.print("Enter Member's Age: ");
+					age = sc.nextInt();
+					System.out.print("Enter Member's Weight: ");
+					weight = sc.nextInt();
+					System.out.print("Enter Member's Height in inches: ");
+					height = sc.nextInt();
+					System.out.print("Enter Member's Blood Pressure (sys): ");
+					bps = sc.nextInt();
+					System.out.print("Enter Member's Blood Presssure (dia): ");
+					bpd = sc.nextInt();
+					System.out.println("Does the Member have any of the following?");
+					System.out.println("(Answer with y or n");
+					System.out.print("Does the Member have Cancer? ");
+					cancer = sc.next();
+					System.out.print("Does the Member have Diabetes? ");
+					diabetes = sc.next();
+					System.out.print("Does the Member have alzheimers? ");
+					alzheimers = sc.next();
+					members.add(new Member(firstname, lastname, age, weight, height, bps, bpd, cancer, diabetes, alzheimers));
 				}
 				else if(choice == 3) 
 				{
