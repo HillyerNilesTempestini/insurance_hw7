@@ -48,36 +48,7 @@ public class MemberWriter implements Serializable{
         }
     }
     
-    public static boolean writeJSONFile(ArrayList<Member> members, 
-    	    String fname) {
-    	        try {
-    	            PrintWriter pw = new PrintWriter(new BufferedWriter(
-    	                    new FileWriter(fname)));
-    	            JSONArray array = new JSONArray();
-    	            JSONObject obj;
-    	            for (Member member : members) {
-    	                obj = new JSONObject();
-    	                obj.put("first name", member.getFirstName());
-    	                obj.put("last name", member.getLastName());
-    	                obj.put("age", member.getAge());
-    	                obj.put("height", member.getHeight());
-    	                obj.put("weight", member.getWeight());
-    	                obj.put("BP Syst", member.getBpSyst());
-    	                obj.put("BP Dias", member.getBpDias());
-    	                obj.put("cancer", member.getCancer());
-    	                obj.put("diabetes", member.getDiabeties());
-    	                obj.put("alzheimers", member.getAlzheimers());
-    	                array.add(obj);
-    	            }
-    	            JSONObject gradeList = new JSONObject();
-    	            gradeList.put("member", array);
-    	            pw.println(gradeList.toJSONString());
-    	            pw.close();
-    	            return true;
-    	        } catch (Exception ex) {
-    	            return false;
-    	        }
-    	    }
+
 
 }
 

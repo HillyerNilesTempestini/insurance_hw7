@@ -1,3 +1,4 @@
+package HillyerNilesTempestini;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,15 +49,15 @@ public class Assessor {
 	public static int DiseaseEval(Member member) {
 		int DiseaseRisk = 0;
 		
-		if (member.getAlzheimers() == 'y' || member.getAlzheimers() == 'Y') {
+		if (member.getAlzheimers().equals("y") || member.getAlzheimers().equals("Y")) {
 			DiseaseRisk = DiseaseRisk + 10;
 		}
 		
-		if (member.getCancer() == 'y' || member.getCancer() == 'Y') {
+		if (member.getCancer().equals("y") || member.getCancer().equals("Y")) {
 			DiseaseRisk = DiseaseRisk + 10;
 		}
 		
-		if (member.getDiabeties() == 'y' || member.getDiabeties() == 'Y') {
+		if (member.getDiabeties().equals("y")|| member.getDiabeties().equals("Y")) {
 			DiseaseRisk = DiseaseRisk + 10;
 		}
 		

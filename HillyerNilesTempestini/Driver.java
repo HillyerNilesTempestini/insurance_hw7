@@ -1,4 +1,4 @@
-
+package HillyerNilesTempestini;
 import java.util.*;
 import java.io.*;
 import java.beans.*;
@@ -57,6 +57,7 @@ public class Driver implements Serializable{
 		ArrayList<Member> binMembers = new ArrayList<Member>();
 		ArrayList<Member> xmlMembers = new ArrayList<Member>();
 		ArrayList<InsuranceScore> scoreCards = new ArrayList<InsuranceScore>();
+		ArrayList<InsuranceScore> tempScoreCards = new ArrayList<InsuranceScore>();
 		
 		
 		
@@ -65,8 +66,8 @@ public class Driver implements Serializable{
 		String fname;
 		Scanner fsc = new Scanner(System.in);
 		System.out.print("Enter name of file: ");
-		fname = fsc.nextLine();
-		//fname = "C:\\Users\\Sam Tempestini\\Desktop\\memberData.txt";
+		//fname = fsc.nextLine();
+		fname = "C:\\Users\\Sam Tempestini\\Desktop\\memberData.txt";
 		System.out.println("The file path is: " + fname);
 		members = MemberReader.readTextFile(fname);
 	
@@ -181,17 +182,24 @@ public class Driver implements Serializable{
 						scoreCards.add(Assessor.ProcessInsuranceScoreInfo(fName, lName, score));
 					
 					}
-					
+					tempScoreCards.addAll(scoreCards);
 					InsuranceScore.PrintScoreCard(scoreCards);
+					scoreCards.clear();
 				}
 				else if(choice == 6) 
 				{
+					System.out.println("Enter name of JSON file: ");
+					fileName = fs.nextLine().trim();
+					extension = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
 					
-				}
-				else if(choice == 7) 
+					if (extension.equals(".json"))
+						InsuranceScoreWriter.writeJSONFile(tempScoreCards,fileName);
+						System.out.println("Members were written to JSON file successfully.");
+				}	
+				else
 				{
-					
-				}				
+					System.out.println("Maybe try reading the choices first.");
+				}
 			}catch(Exception ex)
 			{
 				System.out.println("You have chosen poorly...Exiting Program");

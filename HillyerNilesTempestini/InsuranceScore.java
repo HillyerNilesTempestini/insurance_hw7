@@ -1,3 +1,4 @@
+package HillyerNilesTempestini;
 import java.util.ArrayList;
 
 public class InsuranceScore {
