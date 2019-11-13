@@ -3,6 +3,13 @@ import java.util.*;
 import java.io.*;
 import java.beans.*;
 
+/** 
+ * 
+ * @author Sam Tempestini
+ * @author Chelsea Niles
+ *
+ */
+
 @SuppressWarnings("unchecked")
 public class MemberReader implements Serializable{
 	

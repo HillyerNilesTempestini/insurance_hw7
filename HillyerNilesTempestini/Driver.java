@@ -9,8 +9,8 @@ import java.beans.*;
  * @author Cheasea Niles
  * @author Chris Hillyer
  *
+ *
  */
-// testing 123 
 
 public class Driver implements Serializable{
 	/**
@@ -59,15 +59,12 @@ public class Driver implements Serializable{
 		ArrayList<InsuranceScore> scoreCards = new ArrayList<InsuranceScore>();
 		ArrayList<InsuranceScore> tempScoreCards = new ArrayList<InsuranceScore>();
 		
-		
-		
 		welcome();
-		
 		String fname;
 		Scanner fsc = new Scanner(System.in);
 		System.out.print("Enter name of file: ");
-		//fname = fsc.nextLine();
-		fname = "C:\\Users\\Sam Tempestini\\Desktop\\memberData.txt";
+		fname = fsc.nextLine();
+		//fname = "C:\\Users\\Sam Tempestini\\Desktop\\memberData.txt";
 		System.out.println("The file path is: " + fname);
 		members = MemberReader.readTextFile(fname);
 	

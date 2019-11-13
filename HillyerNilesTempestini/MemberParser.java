@@ -1,14 +1,14 @@
 package HillyerNilesTempestini;
 
 import java.io.*;
-
-
-public class MemberParser implements Serializable{
 /**
  * @author Sam Tempestini
- * @param 
- * @return
+ * @author Chelsea Niles
+ * @param String
+ * @return Member
  */
+public class MemberParser implements Serializable{
+
 	public static Member memberParser(String current)
 	{
 		Member mem = new Member();

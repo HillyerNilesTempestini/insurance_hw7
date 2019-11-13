@@ -1,6 +1,13 @@
 package HillyerNilesTempestini;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Chris Hillyer
+ * @author Sam Tempestini
+ * @author Chelsea Niles
+ *
+ */
 public class InsuranceScore {
 	private String name;
 	private int score;

@@ -4,6 +4,11 @@ import java.util.*;
 import java.beans.*;
 import org.json.simple.*;
 
+/** 
+ * 
+ * @author Sam Tempestini
+ *
+ */
 public class MemberWriter implements Serializable{
 
     public static void writeMembersToScreen(ArrayList<Member> members) {

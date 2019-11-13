@@ -2,6 +2,12 @@ package HillyerNilesTempestini;
 
 import java.io.*;
 
+/**
+ * 
+ * @author Sam Tempestini
+ *
+ */
+
 @SuppressWarnings("serial")
 //changed cancer,diabetes, and alzheimers to String from Char...
 public class Member implements Serializable{
@@ -104,7 +110,6 @@ public class Member implements Serializable{
 	public void setAlzheimers(String alzheimers) {
 		this.alzheimers = alzheimers;
 	}
-	
 	
 	@Override 
 	public String toString()
