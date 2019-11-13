@@ -1,8 +1,7 @@
-package HillyerNilesTempestini;
+
 import java.util.*;
 import java.io.*;
 import java.beans.*;
-import org.json.simple.*;
 
 /**
  * 
@@ -53,21 +52,21 @@ public class Driver implements Serializable{
 		//C:\Users\Sam Tempestini\Desktop\memberData.txt
 		int choice = 0;
 		String ftype, outputFname, inputFname, fileName, ft, extension;
-		String firstname, lastname, cancer, diabetes, alzheimers;
-		int age, weight, height, bps, bpd;
 		ArrayList<Member> members = new ArrayList<Member>();
 		ArrayList<Member> txtMembers = new ArrayList<Member>();
 		ArrayList<Member> binMembers = new ArrayList<Member>();
 		ArrayList<Member> xmlMembers = new ArrayList<Member>();
-
+		ArrayList<InsuranceScore> scoreCards = new ArrayList<InsuranceScore>();
+		
+		
 		
 		welcome();
 		
 		String fname;
 		Scanner fsc = new Scanner(System.in);
-		//System.out.print("Enter name of file: ");
-		//fname = fsc.nextLine();
-		fname = "C:\\Users\\Sam Tempestini\\Desktop\\memberData.txt";
+		System.out.print("Enter name of file: ");
+		fname = fsc.nextLine();
+		//fname = "C:\\Users\\Sam Tempestini\\Desktop\\memberData.txt";
 		System.out.println("The file path is: " + fname);
 		members = MemberReader.readTextFile(fname);
 	
@@ -86,34 +85,7 @@ public class Driver implements Serializable{
 				}
 				else if(choice == 2)
 				{
-					//Needed to change Member.java in order to take in String instead of Char
-					//for taking user input. -Chelsea
-					/**
-					 * @author Chelsea Niles
-					 */
-					System.out.print("Enter Member's First Name: ");
-					firstname = sc.next();
-					System.out.print("Enter Member's Last Name: ");
-					lastname = sc.next();
-					System.out.print("Enter Member's Age: ");
-					age = sc.nextInt();
-					System.out.print("Enter Member's Weight: ");
-					weight = sc.nextInt();
-					System.out.print("Enter Member's Height in inches: ");
-					height = sc.nextInt();
-					System.out.print("Enter Member's Blood Pressure (sys): ");
-					bps = sc.nextInt();
-					System.out.print("Enter Member's Blood Presssure (dia): ");
-					bpd = sc.nextInt();
-					System.out.println("Does the Member have any of the following?");
-					System.out.println("(Answer with y or n");
-					System.out.print("Does the Member have Cancer? ");
-					cancer = sc.next();
-					System.out.print("Does the Member have Diabetes? ");
-					diabetes = sc.next();
-					System.out.print("Does the Member have alzheimers? ");
-					alzheimers = sc.next();
-					members.add(new Member(firstname, lastname, age, weight, height, bps, bpd, cancer, diabetes, alzheimers));
+					
 				}
 				else if(choice == 3) 
 				{
@@ -202,28 +174,24 @@ public class Driver implements Serializable{
 				}
 				else if(choice == 5) 
 				{
+					for (Member m : members) {
+						String fName = m.getFirstName();
+						String lName = m.getLastName();
+						int score = Assessor.DetermineScore(m);
+						scoreCards.add(Assessor.ProcessInsuranceScoreInfo(fName, lName, score));
 					
+					}
+					
+					InsuranceScore.PrintScoreCard(scoreCards);
 				}
 				else if(choice == 6) 
 				{
-					System.out.println("Enter name of JSON file: ");
-					fileName = fs.nextLine().trim();
-					extension = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
 					
-					if (extension.equals(".json"))
-						MemberWriter.writeJSONFile(members,fileName);
-						System.out.println("Members were written to JSON file successfully.");
-				}	
-				else if(choice == 8) 
-				{
-					System.out.println("Enter name of JSON file: ");
-					fileName = fs.nextLine().trim();
-					extension = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
-					
-					if (extension.equals(".json"))
-						MemberWriter.writeJSONFile(members,fileName);
-						System.out.println("Members were written to JSON file successfully.");
 				}
+				else if(choice == 7) 
+				{
+					
+				}				
 			}catch(Exception ex)
 			{
 				System.out.println("You have chosen poorly...Exiting Program");
@@ -236,15 +204,3 @@ public class Driver implements Serializable{
 		System.exit(0);
 	}
 }
-
-   
-    
-    
-    
-    
-    
-    
-
-
-
-
