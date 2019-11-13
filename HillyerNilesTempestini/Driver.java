@@ -88,6 +88,9 @@ public class Driver implements Serializable{
 				{
 					//Needed to change Member.java in order to take in String instead of Char
 					//for taking user input. -Chelsea
+					/**
+					 * @author Chelsea Niles
+					 */
 					System.out.print("Enter Member's First Name: ");
 					firstname = sc.next();
 					System.out.print("Enter Member's Last Name: ");

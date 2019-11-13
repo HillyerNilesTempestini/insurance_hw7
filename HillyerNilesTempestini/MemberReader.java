@@ -6,15 +6,15 @@ import java.beans.*;
 @SuppressWarnings("unchecked")
 public class MemberReader implements Serializable{
 	
+	
 	public static ArrayList<Member> readTextFile(String fname) throws FileNotFoundException
 	{
 		ArrayList<Member> mems = new ArrayList<Member>();
 		ArrayList<String> lines = new ArrayList<String>();
 		String line,cur;
 		// local members vars
-		String fn, ln;
-		int ag,ht,wt, bps, bpd;
-		char can, dia, alz;
+
+		
 		try {
 			Scanner fsc = new Scanner(System.in);
 			fsc = new Scanner(new File(fname));	
@@ -30,19 +30,7 @@ public class MemberReader implements Serializable{
 			for(int i = 0; i < lines.size(); ++i)
 			{
 				cur = lines.get(i);
-				
-				fn = MemberParser.fNameParser(cur);
-				ln = MemberParser.lNameParser(cur);
-				ag = MemberParser.ageParser(cur);
-				ht = MemberParser.heightParser(cur);
-				wt = MemberParser.weightParser(cur);
-				bps = MemberParser.bpSystParser(cur);
-				bpd = MemberParser.bpDiasParser(cur);
-				can = MemberParser.cancerParser(cur);
-				dia= MemberParser.diabetiesParser(cur);
-				alz = MemberParser.alzheimersParser(cur);
-			
-				Member m  = new Member(fn,ln,ag,ht,wt,bps,bpd,can,dia,alz);
+				Member m  = MemberParser.memberParser(cur);
 				mems.add(m);
 			}
 			
