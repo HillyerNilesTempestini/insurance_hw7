@@ -180,7 +180,7 @@ public class Driver implements Serializable{
 					
 					}
 					tempScoreCards.addAll(scoreCards);
-					InsuranceScore.PrintScoreCard(scoreCards);
+					InsuranceScoreWriter.PrintScoreCard(scoreCards);
 					scoreCards.clear();
 				}
 				else if(choice == 6) 

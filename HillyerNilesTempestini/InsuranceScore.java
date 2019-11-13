@@ -47,14 +47,5 @@ public class InsuranceScore {
 				 +"Name:%30s\n"
 				 +"Score:%28s\n" 
 				 +"Risk Level:%23s\n", getName(), getScore(), getRiskLevel());
-	}
-	
-	public static void PrintScoreCard(ArrayList<InsuranceScore> IS) {
-        for (InsuranceScore temp : IS) {
-            System.out.println(temp);
-        }
-	
-	}
-	
-
+	}	
 }
